@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Attackable
+  - HealingFountains
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - BlockingObjects
+  - Actors
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Floor
+    uniqueID: 1289066681
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Interactable
+    uniqueID: 74322095
+    locked: 0
+  - name: Actor
+    uniqueID: 1100336577
+    locked: 0
+  - name: Design
+    uniqueID: 3302039003
+    locked: 0
+  - name: Weapons and Projectals
+    uniqueID: 3248032281
+    locked: 0
+  - name: Collision
+    uniqueID: 3277988157
+    locked: 0
