@@ -28,8 +28,8 @@ public class Enemy : UnmovedMover
     //Healing logic
     protected GameObject[] healingFountains;
     protected float[] distance = new float[20];
-    protected float minDistance = float.MaxValue;
-    protected int minDistanceFountain;
+    
+    
 
     protected override void Start()
     {
@@ -40,7 +40,6 @@ public class Enemy : UnmovedMover
         xSpeed = 0.5f;
         ySpeed = 0.4f;
         healingFountains = GameObject.FindGameObjectsWithTag("HealingFountains");
-        Debug.Log(healingFountains.ToString());
     }
 
 
@@ -90,7 +89,7 @@ public class Enemy : UnmovedMover
 
         var distance = Vector3.Distance(playerTransform.position, transform.position);
 
-        if ((float)hitpoints < (float)maxHitpoints / 2)
+        if ((float)hitpoints < (float)maxHitpoints / 2 && healingFountains.Length != 0 && healingFountains != null)
             ReplenishHealth();
 
         else if (distance < triggerLength && distance < chaseLength)
@@ -125,21 +124,22 @@ public class Enemy : UnmovedMover
 
     protected virtual void ReplenishHealth()
     {
+        float minDistance = float.MaxValue;
+        int minDistanceFountain = 0;
         for (int i = 0; i < healingFountains.Length; i++)
         {
-            if (healingFountains[0] == null)
-                return;
+            
             distance[i] = Vector3.Distance(healingFountains[i].transform.position, transform.position);
+            
             if(distance[i] < minDistance)
             {
                 minDistance = distance[i];
                 minDistanceFountain = i;
             }
         }
-        if (healingFountains[minDistanceFountain] != null) //fix this
-            UpdateMotor(healingFountains[minDistanceFountain].transform.position - transform.position);
-        else
-            return;
+       
+        UpdateMotor(healingFountains[minDistanceFountain].transform.position - transform.position);
+        
     }
 
 
