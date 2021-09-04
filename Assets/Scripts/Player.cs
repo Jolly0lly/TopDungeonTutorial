@@ -49,7 +49,7 @@ public class Player : UnmovedMover
         maxHitpoints += 10;
         hitpoints = maxHitpoints;
         GameManager.instance.learningPoints += 10;
-        GameManager.instance.ShowText("Level Up!!!", 30, Color.magenta, transform.position, Vector3.up * 30, 2);
+        GameManager.instance.ShowText("Level Up!!!", 40, Color.magenta, transform.position, Vector3.up * 30, 2);
     }
 
     public void SetLevel(int level)

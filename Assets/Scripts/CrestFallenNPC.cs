@@ -13,7 +13,7 @@ public class CrestFallenNPC : Collidable
         if(Time.time - lastShout> cooldown)
         {
             lastShout = Time.time;
-            GameManager.instance.ShowText(message, 40, Color.white, transform.position, Vector3.zero, 4);
+            GameManager.instance.ShowText(message, 50, Color.white, transform.position, Vector3.zero, 4);
         }
     }
         

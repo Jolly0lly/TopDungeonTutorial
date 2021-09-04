@@ -10,11 +10,13 @@ public abstract class UnmovedMover : Attackable
     protected RaycastHit2D hit;
     protected float ySpeed = 0.75f;
     protected float xSpeed = 1f;
+    protected Rigidbody2D rb;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
 
@@ -34,21 +36,13 @@ public abstract class UnmovedMover : Attackable
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        //Add push vector
+        //Apply push force
 
-        moveDelta += pushDirection;
+        rb.AddForce(pushDirection, ForceMode2D.Impulse);
+        if (pushDirection != Vector3.zero)
+            StartCoroutine(PushForceDiminish(pushRecoveryDelay));
 
-        //Reduce push force every frame based on recovery speed
-
-
-        pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
-
-        if (pushDirection.x < 0.1f)
-            pushDirection.x = 0;
-        if (pushDirection.y < 0.1f)
-            pushDirection.y = 0;
-        if (pushDirection.z < 0.1f)
-            pushDirection.z = 0;
+        pushDirection = Vector3.zero;
        
 
         // Checking if movement in specified direction is possible by casting a box and checking then number of collisions
@@ -68,21 +62,11 @@ public abstract class UnmovedMover : Attackable
         }
     }
 
-    public IEnumerator PushForceDiminish(float pushRecoverySpeed, Vector3 pushDirection)
+    public IEnumerator PushForceDiminish(float pushRecoveryDelay)
     {
-        yield return new WaitForSeconds(pushRecoverySpeed);
-
-        if(pushDirection.x != 0 || pushDirection.y != 0|| pushDirection.z !=0)
-        {
-            moveDelta = Vector3.zero;
-
-            
-
-            
-
-            
-        }
-        yield return null;
+        yield return new WaitForSeconds(pushRecoveryDelay);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0;
     }
 
 }

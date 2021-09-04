@@ -39,7 +39,7 @@ public class Weapon : Collidable
             Damage dmg = new Damage();
             dmg.damageAmount = weaponLevel + 1;
             dmg.origin = transform.position;
-            dmg.pushForce = 2.0f + (weaponLevel / 2);
+            dmg.pushForce = 2.0f + weaponLevel;
 
             coll.SendMessage("ReceiveDamage", dmg);
                 

@@ -55,6 +55,13 @@ public class Enemy : UnmovedMover
         {
             transform.localScale = Vector3.one;
         }
+
+        /*if (pushDirection.x < 0.1f)
+            pushDirection.x = 0;
+        if (pushDirection.y < 0.01f)
+            pushDirection.y = 0;
+        if (pushDirection.z < 0.1f)
+            pushDirection.z = 0;*/
     }
 
 
@@ -112,7 +119,7 @@ public class Enemy : UnmovedMover
     {
         Destroy(gameObject);
         GameManager.instance.GrantExp(xpValue);
-        GameManager.instance.ShowText("+" + xpValue + " xp", 30, Color.magenta, transform.position, Vector3.up * 40, 1.0f);
+        GameManager.instance.ShowText("+" + xpValue + " xp", 40, Color.magenta, transform.position, Vector3.up * 40, 1.0f);
     }
 
 
@@ -120,7 +127,7 @@ public class Enemy : UnmovedMover
     {
         for (int i = 0; i < healingFountains.Length; i++)
         {
-            if (healingFountains[i] == null)
+            if (healingFountains[0] == null)
                 return;
             distance[i] = Vector3.Distance(healingFountains[i].transform.position, transform.position);
             if(distance[i] < minDistance)
@@ -129,8 +136,10 @@ public class Enemy : UnmovedMover
                 minDistanceFountain = i;
             }
         }
-
-        UpdateMotor(healingFountains[minDistanceFountain].transform.position - transform.position);
+        if (healingFountains[minDistanceFountain] != null) //fix this
+            UpdateMotor(healingFountains[minDistanceFountain].transform.position - transform.position);
+        else
+            return;
     }
 
 
