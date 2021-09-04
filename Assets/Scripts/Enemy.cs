@@ -54,13 +54,6 @@ public class Enemy : UnmovedMover
         {
             transform.localScale = Vector3.one;
         }
-
-        /*if (pushDirection.x < 0.1f)
-            pushDirection.x = 0;
-        if (pushDirection.y < 0.01f)
-            pushDirection.y = 0;
-        if (pushDirection.z < 0.1f)
-            pushDirection.z = 0;*/
     }
 
 
