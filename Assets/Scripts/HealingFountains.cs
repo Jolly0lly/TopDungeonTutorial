@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class HealingFountains : Collidable
 {
-    public Collider2D fountainCollider;
-    [SerializeField] int healAmount;
-    [SerializeField] int healDuration;
+    [SerializeField] private Collider2D fountainCollider;
+    [SerializeField] private int healAmount;
+    [SerializeField] private float healDuration;
+    [SerializeField] private float healDelay;
     protected void OnTriggerEnter2D(Collider2D coll)
     {
-
-        if (coll.tag == "Attackable")
+        IAttackable attackable = coll.GetComponent<IAttackable>();
+        Debug.Log(coll.name);
+        if (attackable != null)
         {
             HealingStruct hL = new HealingStruct();
             hL.healAmount = healAmount;
             hL.healDuration = healDuration;
+            hL.healDelay = healDelay;
             Debug.Log(coll.name);
-            coll.SendMessage("Heal", hL);
+            StartCoroutine(attackable.Heal(hL));
         }   
+    }
+}
         
 
             
@@ -27,11 +32,9 @@ public class HealingFountains : Collidable
             
             
         
-    }
     
 
 
-}
     
    
 

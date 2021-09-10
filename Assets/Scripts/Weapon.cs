@@ -74,13 +74,13 @@ public class Weapon : Collidable
 
     public void UpgradeWeapon()
     {
-        
         weaponLevel++;
         spriteRenderer.sprite = GameManager.instance.weaponSprites[weaponLevel];
+    }
+        
 
         
         
 
        
-    }
 }

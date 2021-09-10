@@ -5,5 +5,6 @@ using UnityEngine;
 public struct HealingStruct
 {
     public int healAmount;
-    public int healDuration;
+    public float healDuration;
+    public float healDelay;
 }

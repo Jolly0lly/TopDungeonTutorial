@@ -8,8 +8,8 @@ public abstract class UnmovedMover : Attackable
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
-    protected float ySpeed = 0.75f;
-    protected float xSpeed = 1f;
+    [SerializeField] protected float  ySpeed = 0.75f;
+    [SerializeField] protected float xSpeed = 1f;
     protected Rigidbody2D rb;
 
     // Start is called before the first frame update

@@ -139,3 +139,4 @@ MonoBehaviour:
   fountainCollider: {fileID: 7756579599871143851}
   healAmount: 1
   healDuration: 5
+  healDelay: 0.5

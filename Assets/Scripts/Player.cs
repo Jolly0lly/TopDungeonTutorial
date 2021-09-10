@@ -25,7 +25,7 @@ public class Player : UnmovedMover
     protected override void Start()
     {
         base.Start();
-        hitpoints = maxHitpoints = 10;
+        hitpoints = maxHitpoints;
         spriteRenderer = GetComponent<SpriteRenderer>();
         DontDestroyOnLoad(gameObject);
         
@@ -69,12 +69,11 @@ public class Player : UnmovedMover
         hpRatio = (float)hitpoints / (float)maxHitpoints;
 
         hpBar.localScale = new Vector3(hpRatio, 1, 1);
-        
 
+        
     }
 
-   
 
-   
+
 
 }

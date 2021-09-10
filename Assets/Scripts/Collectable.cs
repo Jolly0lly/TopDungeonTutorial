@@ -11,7 +11,7 @@ public class Collectable : Collidable
 
     protected override void OnCollide(Collider2D coll)
     {
-
+        base.OnCollide(coll);
         if (coll.name == "Player")
         {
             OnCollect();

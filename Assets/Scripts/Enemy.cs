@@ -28,17 +28,17 @@ public class Enemy : UnmovedMover
     //Healing logic
     protected GameObject[] healingFountains;
     protected float[] distance = new float[20];
-    
-    
+
+    protected void Awake()
+    {
+        startingPosition = this.transform.position;
+    }
 
     protected override void Start()
     {
         base.Start();
         playerTransform = GameManager.instance.player.transform;
-        startingPosition = GameObject.Find("SP_0").transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
-        xSpeed = 0.5f;
-        ySpeed = 0.4f;
         healingFountains = GameObject.FindGameObjectsWithTag("HealingFountains");
     }
 

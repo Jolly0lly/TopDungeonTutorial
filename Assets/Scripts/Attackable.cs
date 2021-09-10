@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attackable: MonoBehaviour
+public class Attackable: MonoBehaviour, IAttackable
 {
     // Public fields
 
@@ -28,7 +28,7 @@ public class Attackable: MonoBehaviour
         attackableInstance = this;
     }
 
-    protected virtual void ReceiveDamage(Damage dmg)
+    public void ReceiveDamage(Damage dmg)
     {   
         
         if (Time.time - lastImmune > immuneTime)
@@ -49,7 +49,7 @@ public class Attackable: MonoBehaviour
         }
     }
 
-    IEnumerator Heal(HealingStruct hL)
+    public IEnumerator Heal(HealingStruct hL)
     {
         while (hL.healDuration > 0)
         {
@@ -78,7 +78,7 @@ public class Attackable: MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(hL.healDelay);
             hL.healDuration--;
 
         }
