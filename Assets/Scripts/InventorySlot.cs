@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
+    public Item Item => item;
     [SerializeField] private Image image;
     private Item item;
 
