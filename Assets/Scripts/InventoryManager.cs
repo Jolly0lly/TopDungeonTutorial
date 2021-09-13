@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         LoadStorage();
+        SetAlphaToZeroIf();
     }
 
     public void LoadStorage()
@@ -30,4 +31,13 @@ public class InventoryManager : MonoBehaviour
              index++;
         }
     }
+
+    public void SetAlphaToZeroIf()
+    {
+        foreach (InventorySlot inventorySlot in inventorySlots)
+            if (inventorySlot.Item == null)
+                inventorySlot.SetAlphaToZero();
+
+    }
+
 }

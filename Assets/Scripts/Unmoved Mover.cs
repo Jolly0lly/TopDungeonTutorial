@@ -8,7 +8,7 @@ public abstract class UnmovedMover : Attackable
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
-    [SerializeField] protected float  ySpeed = 0.75f;
+    [SerializeField] protected float ySpeed = 0.75f;
     [SerializeField] protected float xSpeed = 1f;
     protected Rigidbody2D rb;
 
@@ -43,7 +43,7 @@ public abstract class UnmovedMover : Attackable
             StartCoroutine(PushForceDiminish(pushRecoveryDelay));
 
         pushDirection = Vector3.zero;
-       
+
 
         // Checking if movement in specified direction is possible by casting a box and checking then number of collisions
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actors", "BlockingObjects"));

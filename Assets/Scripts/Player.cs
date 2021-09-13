@@ -70,8 +70,8 @@ public class Player : UnmovedMover
 
         hpBar.localScale = new Vector3(hpRatio, 1, 1);
 
-        
     }
+        
 
 
 

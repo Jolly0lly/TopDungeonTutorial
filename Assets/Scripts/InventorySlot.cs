@@ -13,6 +13,7 @@ public class InventorySlot : MonoBehaviour
     {
         image.sprite = null;
         item = null;
+
     }
 
     public void UpdateSlot(Item item)
@@ -20,4 +21,13 @@ public class InventorySlot : MonoBehaviour
         image.sprite = item.Icon;
         this.item = item;
     }
+
+
+    public void SetAlphaToZero()
+    {
+        var tempcolor = image.color;
+        tempcolor.a = 0;
+        image.color = tempcolor;
+    }
+
 }
