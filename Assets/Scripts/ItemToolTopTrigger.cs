@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ItemToolTopTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private GameObject itemToolTipDisplay;
+    [SerializeField] private GameObject itemToolTipHolder;
     [SerializeField] private ItemToolTip itemToolTip;
     private InventorySlot inventorySlot;
 
@@ -20,13 +20,14 @@ public class ItemToolTopTrigger : MonoBehaviour, IPointerEnterHandler, IPointerE
             return;
         Debug.Log("Mouse Enter");
         itemToolTip.UpdateToolTip(inventorySlot.Item);
-        itemToolTipDisplay.SetActive(true);
+        itemToolTipHolder.SetActive(true);
+        itemToolTipHolder.transform.position = eventData.position;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Mouse Exit");
-        itemToolTipDisplay.SetActive(false);
+        itemToolTipHolder.SetActive(false);
         itemToolTip.ResetToolTip();
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1562774894216991490}
   - component: {fileID: 8000008932642186723}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SpriteAndDescriptionHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,8 +74,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7982466669590054361}
   - component: {fileID: 7852917186015797641}
+  - component: {fileID: 7967138498864944608}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: ItemToolTipHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,6 +129,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7967138498864944608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271752954659751338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b5cddc7e0c2f14687b86674e4b4caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemNameText: {fileID: 7294539103235953839}
+  itemDescriptionText: {fileID: 7294539104011551361}
+  itemImage: {fileID: 7294539105004964149}
 --- !u!1 &7294539103177232336
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -342,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -371,14 +387,14 @@ GameObject:
   - component: {fileID: 7294539103536353731}
   - component: {fileID: 7294539103536353730}
   - component: {fileID: 7294539103536353757}
-  - component: {fileID: 6267301337429867313}
+  - component: {fileID: 5414005037331302198}
   m_Layer: 5
   m_Name: ItemToolTipDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7294539103536353728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -418,7 +434,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &7294539103536353730
 MonoBehaviour:
@@ -460,21 +476,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6267301337429867313
-MonoBehaviour:
+--- !u!225 &5414005037331302198
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7294539103536353756}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15b5cddc7e0c2f14687b86674e4b4caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemNameText: {fileID: 7294539103235953839}
-  itemDescriptionText: {fileID: 7294539104011551361}
-  itemImage: {fileID: 7294539105004964149}
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &7294539103625926082
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +500,7 @@ GameObject:
   - component: {fileID: 7294539103625926081}
   - component: {fileID: 7294539103625926080}
   m_Layer: 5
-  m_Name: ToolTipPanel
+  m_Name: ToolTipUpperPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
