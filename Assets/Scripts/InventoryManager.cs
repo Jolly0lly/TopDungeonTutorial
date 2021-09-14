@@ -12,13 +12,12 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         inventorySlots = GetComponentsInChildren<InventorySlot>().ToList();
-        
+
     }
 
     private void OnEnable()
     {
         LoadStorage();
-        SetAlphaToZeroIf();
     }
 
     public void LoadStorage()
@@ -27,17 +26,10 @@ public class InventoryManager : MonoBehaviour
         int index = 0;
         foreach (var item in storage.Items)
         {
-             inventorySlots[index].UpdateSlot(item);
-             index++;
+            inventorySlots[index].UpdateSlot(item);
+            index++;
         }
     }
-
-    public void SetAlphaToZeroIf()
-    {
-        foreach (InventorySlot inventorySlot in inventorySlots)
-            if (inventorySlot.Item == null)
-                inventorySlot.SetAlphaToZero();
-
-    }
-
 }
+
+

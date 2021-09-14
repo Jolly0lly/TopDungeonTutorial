@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InventoryTrigger : MonoBehaviour
 {
-    [SerializeField] GameObject inventory;
-    public bool inventoryEnabled;
+    [SerializeField] private GameObject inventory;
+    private bool inventoryEnabled = false;
 
     // Update is called once per frame
     void Update()

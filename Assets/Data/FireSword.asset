@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   type: 0
-  description: 
-  icon: {fileID: 0}
+  description: FireSword
+  icon: {fileID: -3919981076082286801, guid: b1ede8506e053814ba53bdd1671537d1, type: 3}
+  damage: 0
+  weaponLevel: 0
