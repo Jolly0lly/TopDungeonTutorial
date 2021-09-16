@@ -62,12 +62,12 @@ public class GameManager : MonoBehaviour
     {
         // is the weapon max level
 
-        if (weaponPrices.Count < weapon.weaponLevel)
+        if (weaponPrices.Count < weapon.WeaponLevel)
             return false;
 
-        if (fries >= weaponPrices[weapon.weaponLevel])
+        if (fries >= weaponPrices[weapon.WeaponLevel])
         {
-            fries -= weaponPrices[weapon.weaponLevel];
+            fries -= weaponPrices[weapon.WeaponLevel];
             weapon.UpgradeWeapon();
 
             return true;
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
         s += "0" + "|";
         s += fries.ToString() + "|";
         s += exp.ToString() + "|";
-        s += weapon.weaponLevel.ToString();
+        s += weapon.WeaponLevel.ToString();
         s += learningPoints.ToString();
         PlayerPrefs.SetString("SaveState", s);
     } 
@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
 
 
         //Weapon
-        weapon.weaponLevel = int.Parse(data[3]);
+        //weapon.WeaponLevel = int.Parse(data[3]);
 
 
        // learningPoints = int.Parse(data[4]);

@@ -6,13 +6,14 @@ public class Collectable : Collidable
 {
     //Logic
     protected bool collected;
-
+    protected Player player;
     
 
     protected override void OnCollide(Collider2D coll)
     {
         base.OnCollide(coll);
-        if (coll.name == "Player")
+        player = coll.GetComponent<Player>();
+        if (player != null)
         {
             OnCollect();
         }

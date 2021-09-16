@@ -11,7 +11,6 @@ public class HealingFountains : Collidable
     protected void OnTriggerEnter2D(Collider2D coll)
     {
         IAttackable attackable = coll.GetComponent<IAttackable>();
-        Debug.Log(coll.name);
         if (attackable != null)
         {
             HealingStruct hL = new HealingStruct();

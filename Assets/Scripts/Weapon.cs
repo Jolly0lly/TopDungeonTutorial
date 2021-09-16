@@ -8,7 +8,8 @@ public class Weapon : Collidable
 
     //Upgrade
 
-    public int weaponLevel = 0;
+    public int WeaponLevel => weaponLevel;
+    private int weaponLevel = 0;
     private SpriteRenderer spriteRenderer;
 
     //Swing
@@ -22,10 +23,10 @@ public class Weapon : Collidable
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+    }
 
         
 
-    }
 
 
     protected override void OnCollide(Collider2D coll)
