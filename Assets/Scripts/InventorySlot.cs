@@ -48,12 +48,18 @@ public class InventorySlot : MonoBehaviour
 
     public void HighlightSlotTrigger()
     {
-        invSlotOutlineEnabled = !invSlotOutlineEnabled;
-        if (invSlotOutlineEnabled == true)
-            invSlotOutline.enabled = true;
-        else
-            invSlotOutline.enabled = false;
+        if(item != null)
+        {
+            invSlotOutlineEnabled = !invSlotOutlineEnabled;
+            if (invSlotOutlineEnabled == true)
+                invSlotOutline.enabled = true;
+            else
+                invSlotOutline.enabled = false;
+        }
     }
+        
+   
+
 }
 
 

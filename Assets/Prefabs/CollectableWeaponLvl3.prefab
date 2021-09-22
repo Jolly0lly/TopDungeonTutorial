@@ -147,7 +147,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  weaponItem: {fileID: 11400000, guid: 861e15f4585f25043a90b05c55398339, type: 2}
+  item: {fileID: 11400000, guid: 861e15f4585f25043a90b05c55398339, type: 2}
   storage: {fileID: 11400000, guid: 00ee07f09f5769e4cb7d3a36f9d69f08, type: 2}
 --- !u!61 &-7687755635921747784
 BoxCollider2D:

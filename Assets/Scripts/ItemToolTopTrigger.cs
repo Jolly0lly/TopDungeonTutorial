@@ -21,7 +21,7 @@ public class ItemToolTopTrigger : MonoBehaviour, IPointerEnterHandler, IPointerE
         Debug.Log("Mouse Enter");
         itemToolTip.UpdateToolTip(inventorySlot.Item);
         itemToolTipHolder.SetActive(true);
-        itemToolTipHolder.transform.position = eventData.position;
+        //itemToolTipHolder.transform.position = eventData.position;
     }
 
     public void OnPointerExit(PointerEventData eventData)

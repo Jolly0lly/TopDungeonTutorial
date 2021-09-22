@@ -9,7 +9,7 @@ public class Weapon : Collidable
     //Upgrade
 
     public int WeaponLevel => weaponLevel;
-    private int weaponLevel = 0;
+    private int weaponLevel;
     private SpriteRenderer spriteRenderer;
 
     //Swing
@@ -23,6 +23,7 @@ public class Weapon : Collidable
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        weaponLevel = 0;
     }
 
         
@@ -70,7 +71,7 @@ public class Weapon : Collidable
     private void Swing()
     {
         anim.SetTrigger("Swing");
-        Debug.Log("Swing");
+        
     }
 
     public void UpgradeWeapon()

@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: -8084309531994777368}
   - component: {fileID: 3974409739591331133}
   - component: {fileID: 4681720281529093710}
+  - component: {fileID: 8389825298554297669}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -280,3 +281,16 @@ MonoBehaviour:
   m_EffectColor: {r: 0.1485849, g: 0.5943396, b: 0.22621861, a: 0.7372549}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
+--- !u!114 &8389825298554297669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695673349730145610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3977623de33de4f9d832c31b01683e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storage: {fileID: 0}
