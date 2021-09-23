@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbe77293cb5c184da8be69d44b36282, type: 3}
-  m_Name: FireSword
+  m_Script: {fileID: 11500000, guid: e225830c93e07ec42bb987bb2a791fb1, type: 3}
+  m_Name: ArmourLvll2
   m_EditorClassIdentifier: 
   ID: 0
-  type: 0
-  description: FireSword
-  icon: {fileID: -3919981076082286801, guid: b1ede8506e053814ba53bdd1671537d1, type: 3}
-  damage: 0
-  weaponLevel: 0
+  type: 2
+  description: 
+  icon: {fileID: 9048021198963646631, guid: dd551ac5f467129499363731eca79ec2, type: 3}
+  damageReduction: 5

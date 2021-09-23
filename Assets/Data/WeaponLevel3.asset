@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponLevel3
   m_EditorClassIdentifier: 
   ID: 0
-  type: 0
+  type: 1
   description: Weapon Level 3
   icon: {fileID: 4564897580977227239, guid: dd551ac5f467129499363731eca79ec2, type: 3}
   damage: 0

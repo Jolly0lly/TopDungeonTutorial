@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public Sprite Icon => icon;
+    public int Type => type;
     public string Description => description;
 
     [SerializeField] private int ID;

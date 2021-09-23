@@ -20,10 +20,10 @@ public class CharacterMenu : MonoBehaviour
     }
 
 
-    public void OnArmorEquip(int menubox)
+    public void OnArmorEquip(Item item)
     {
-        currentArmorSprite.sprite = GameManager.instance.armorSprites[menubox];
-        GameManager.instance.player.SwapSprite(currentArmor);
+        currentArmorSprite.sprite = item.Icon;
+        GameManager.instance.player.SwapSprite(item);
     }
 
     public void OnWeaponUpgrade()

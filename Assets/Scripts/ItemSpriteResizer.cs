@@ -5,23 +5,34 @@ using UnityEngine.UI;
 
 public class ItemSpriteResizer : MonoBehaviour
 {
-    private Image image;
+    [SerializeField] private Image image;
+    [SerializeField] private Image imageHolder;
     private Vector2 imageResolution;
-    private 
-    void Start()
+    private Vector2 imageHolderResolution;
+
+    public void ImageResize()
     {
         imageResolution = image.rectTransform.sizeDelta;
-    }
+        imageHolderResolution = imageHolder.rectTransform.sizeDelta;
+        imageResolution = new Vector2(image.sprite.rect.width, image.sprite.rect.height);
+        for (float sizeScale = 0; imageResolution.x < imageHolderResolution.x && imageResolution.y < imageHolderResolution.y; sizeScale++)
+        {
+            imageResolution.x *= 2;
+            imageResolution.y *= 2;
+            image.rectTransform.sizeDelta = imageResolution;
+            sizeScale++;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        if(imageResolution.x > imageHolderResolution.x || imageResolution.y > imageHolderResolution.y)
+        {
+            imageResolution.x /= 2;
+            imageResolution.y /= 2;
+            image.rectTransform.sizeDelta = imageResolution;
+        }
+
         
     }
-
-    public void ImageResize(Vector2 imageResolution)
-    {
-
-    }
-
 }
+
+
+            

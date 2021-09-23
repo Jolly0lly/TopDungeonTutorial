@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbe77293cb5c184da8be69d44b36282, type: 3}
-  m_Name: WeaponItem
+  m_Script: {fileID: 11500000, guid: e225830c93e07ec42bb987bb2a791fb1, type: 3}
+  m_Name: ArmourLvl1
   m_EditorClassIdentifier: 
   ID: 0
-  type: 1
-  description: GenericWeapon
-  icon: {fileID: 1839998147110866507, guid: dd551ac5f467129499363731eca79ec2, type: 3}
-  damage: 0
-  weaponLevel: 0
+  type: 2
+  description: 
+  icon: {fileID: -1655761581076612383, guid: dd551ac5f467129499363731eca79ec2, type: 3}
+  damageReduction: 3

@@ -8,6 +8,7 @@ public class StorageData : ScriptableObject
     public List<Item> Items => items;
     [SerializeField] private List<Item> items = new List<Item>();
     public UnityEvent onDataChanged = new UnityEvent();
+    public UnityEvent onItemSelected = new UnityEvent();
 
     public void AddItemToInventory(Item item)
     {

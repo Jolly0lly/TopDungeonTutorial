@@ -38,9 +38,11 @@ public class Player : UnmovedMover
         UpdateMotor(new Vector3(x, y, 0));
     }
 
-    public void SwapSprite(int currentArmor)
+    public void SwapSprite(Item item)
     {
-        spriteRenderer.sprite = GameManager.instance.armorSprites[currentArmor];
+        if (item.Type != 2)
+            return;
+        spriteRenderer.sprite = item.Icon;
     }
 
     public void OnLevelUp()

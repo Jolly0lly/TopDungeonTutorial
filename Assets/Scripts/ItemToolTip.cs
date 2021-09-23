@@ -8,7 +8,13 @@ public class ItemToolTip : MonoBehaviour
     [SerializeField] private Text itemNameText;
     [SerializeField] private Text itemDescriptionText;
     [SerializeField] private Image itemImage;
-    
+    [SerializeField] private ItemSpriteResizer itemSpriteResizer;
+
+    private void Start()
+    {
+        itemSpriteResizer = gameObject.GetComponentInChildren<ItemSpriteResizer>();
+    }
+
 
     public void ResetToolTip()
     {
@@ -23,5 +29,6 @@ public class ItemToolTip : MonoBehaviour
         itemNameText.text = item.name;
         itemDescriptionText.text = item.Description;
         itemImage.sprite = item.Icon;
+        itemSpriteResizer.ImageResize();
     }
 }

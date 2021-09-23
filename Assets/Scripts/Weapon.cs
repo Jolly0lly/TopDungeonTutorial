@@ -9,7 +9,7 @@ public class Weapon : Collidable
     //Upgrade
 
     public int WeaponLevel => weaponLevel;
-    private int weaponLevel;
+    public int weaponLevel;
     private SpriteRenderer spriteRenderer;
 
     //Swing
