@@ -9,13 +9,23 @@ public class InventoryManager : MonoBehaviour
     public StorageData Storage => storage;
     private List<InventorySlot> inventorySlots = new List<InventorySlot>();
     [SerializeField] private StorageData storage;
+    private static InventoryManager inventoryManagerInstance;
 
     private void Awake()
     {
+        if (InventoryManager.inventoryManagerInstance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        inventoryManagerInstance = this;
+
         inventorySlots = GetComponentsInChildren<InventorySlot>().ToList();
         storage.onDataChanged.AddListener(LoadStorage);
         LoadStorage();
         gameObject.SetActive(false);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnDestroy()

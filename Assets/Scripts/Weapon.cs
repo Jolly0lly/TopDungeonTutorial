@@ -26,27 +26,22 @@ public class Weapon : Collidable
         weaponLevel = 0;
     }
 
-        
-
-
-
     protected override void OnCollide(Collider2D coll)
     {
-        if (coll.tag == "Attackable")
+        IAttackable attackable = coll.GetComponent<IAttackable>();
+        Player player = coll.GetComponent<Player>();
+        if (attackable != null)
         {
-            if (coll.name == "Player")
+            if (player != null)
                 return;
             // Create a new damage object, then send it to the attackable object hit
 
             Damage dmg = new Damage();
             dmg.damageAmount = weaponLevel + 1;
             dmg.origin = transform.position;
-            dmg.pushForce = 2.0f + weaponLevel;
+            dmg.pushForce = 2.0f + (float) weaponLevel/5;
 
-            coll.SendMessage("ReceiveDamage", dmg);
-                
-
-            Debug.Log(coll.name);
+            attackable.ReceiveDamage(dmg);
         }
         
     }
@@ -79,10 +74,14 @@ public class Weapon : Collidable
         weaponLevel++;
         spriteRenderer.sprite = GameManager.instance.weaponSprites[weaponLevel];
     }
+}
+        
+
+
+
         
 
         
         
 
        
-}

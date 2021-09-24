@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject itemToolTipHolder;
     private bool inventoryEnabled = false;
 
     // Update is called once per frame
@@ -15,7 +16,10 @@ public class InventoryTrigger : MonoBehaviour
 
         if (inventoryEnabled == true)
             inventory.SetActive(true);
-        else 
+        else
+        {
             inventory.SetActive(false);
+            itemToolTipHolder.SetActive(false);
+        }
     }
 }

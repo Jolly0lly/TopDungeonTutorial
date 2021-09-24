@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attackable : MonoBehaviour, IAttackable
+public abstract class Attackable : MonoBehaviour, IAttackable
 {
     // Public fields
 
     public int hitpoints;
     public int maxHitpoints;
     public float pushRecoveryDelay = 0.2f;
-    public static Attackable attackableInstance;
+    protected static Attackable attackableInstance;
+    public int armourDamageReduction;
 
 
     //Immunity
     protected float immuneTime = 1.0f;
-    float lastImmune = 0;
+    protected float lastImmune = 0;
 
 
     //Push
@@ -30,14 +31,15 @@ public class Attackable : MonoBehaviour, IAttackable
 
     public void ReceiveDamage(Damage dmg)
     {
+        int damageTaken = Mathf.Max((dmg.damageAmount - armourDamageReduction), 0);
 
         if (Time.time - lastImmune > immuneTime)
         {
             lastImmune = Time.time;
-            hitpoints -= dmg.damageAmount;
+            hitpoints -= damageTaken;
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
 
-            GameManager.instance.ShowText(dmg.damageAmount.ToString(), 35, Color.red, transform.position, Vector3.up * 25, 0.5f);
+            GameManager.instance.ShowText(damageTaken.ToString(), 35, Color.red, transform.position, Vector3.up * 25, 0.5f);
 
 
             if (hitpoints <= 0)
@@ -53,10 +55,6 @@ public class Attackable : MonoBehaviour, IAttackable
     {
         while (hL.healDuration > 0)
         {
-
-
-
-
             if (hitpoints > maxHitpoints || hitpoints == maxHitpoints)
             {
                 hitpoints = maxHitpoints;
@@ -80,9 +78,13 @@ public class Attackable : MonoBehaviour, IAttackable
 
             yield return new WaitForSeconds(hL.healDelay);
             hL.healDuration--;
-
         }
     }
+
+
+
+
+
 
     protected virtual void Death()
     {

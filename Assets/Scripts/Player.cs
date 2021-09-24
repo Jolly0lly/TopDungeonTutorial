@@ -7,7 +7,9 @@ public class Player : UnmovedMover
 {
     private SpriteRenderer spriteRenderer;
     public static Player playerInstance;
-    public RectTransform hpBar;
+    [SerializeField] private RectTransform hpBar;
+    private ArmourItem currentArmour;
+    [SerializeField] private Sprite defaultPlayerSprite;
 
 
     private void Awake()
@@ -40,10 +42,18 @@ public class Player : UnmovedMover
 
     public void SwapSprite(Item item)
     {
-        if (item.Type != 2)
-            return;
-        spriteRenderer.sprite = item.Icon;
+        if (item != null)
+        {
+            if (item.Type != 2)
+                return;
+            else
+                spriteRenderer.sprite = item.Icon;
+        }
+        else
+            spriteRenderer.sprite = defaultPlayerSprite;
     }
+        
+            
 
     public void OnLevelUp()
     {
@@ -74,8 +84,21 @@ public class Player : UnmovedMover
 
     }
         
+    public void EquipArmour(ArmourItem armourItem)
+    {
+        currentArmour = armourItem;
+        SwapSprite(currentArmour);
+        armourDamageReduction = currentArmour.DamageReduction;
+    }
 
-
-
+    public void UnequipArmour()
+    {
+        currentArmour = null;
+        SwapSprite(currentArmour);
+        armourDamageReduction = 0;
+    }
 
 }
+
+
+

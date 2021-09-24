@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class PlayersInventoryManager : MonoBehaviour, IPointerClickHandler
+public class PlayersInventoryManager : MonoBehaviour//, IPointerClickHandler
 {
     [SerializeField] private StorageData storage;
     private InventorySlot selectedSlot;
     private int selectedItemType;
     private Player player;
     private Weapon weapon;
+    private GameObject weaponObject;
+    private Item selectedItem;
 
     private void Start()
     {
         player = gameObject.GetComponent<Player>();
         weapon = gameObject.transform.GetChild(0).GetComponent<Weapon>();
+        weaponObject = gameObject.transform.GetChild(0).gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,40 +30,33 @@ public class PlayersInventoryManager : MonoBehaviour, IPointerClickHandler
             storage.AddItemToInventory(item.GetItem());
         }
     }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        selectedSlot = eventData.pointerClick.GetComponent<InventorySlot>();
-        selectedItemType = CheckItemType(selectedSlot.Item);
 
-        if (selectedItemType == 0)
-            OnConsumableSelected(selectedSlot.Item);
-        else if (selectedItemType == 1)
-            OnWeaponSelected(selectedSlot.Item);
-        else if (selectedItemType == 2)
-            OnArmourSelected(selectedSlot.Item);
+    public void OnArmourSelected(ArmourItem armourItem)
+    {
+        player.EquipArmour(armourItem);
 
     }
-    
-    public int CheckItemType(Item item)
+    public void OnArmourDeselected()
     {
-        return item.Type;
+        player.UnequipArmour();
     }
 
-    public void OnArmourSelected(Item item)
+    public void OnWeaponSelected(WeaponItem weaponItem)
     {
-        player.SwapSprite(item);
-
+        weaponObject.SetActive(true);
+        player.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponItem.Icon;
+        weapon.weaponLevel = weaponItem.WeaponLevel;
+    }
+    public void OnWeaponDeselected()
+    {
+        weaponObject.SetActive(false);
     }
 
-    public void OnWeaponSelected(Item item)
-    {
-        player.GetComponentInChildren<SpriteRenderer>().sprite = item.Icon;
-        //weapon.weaponLevel = item.WeaponLevel;
-    }
-
-    public void OnConsumableSelected(Item item)
+    public void OnConsumableSelected(ConsumableItem consumableItem)
     {
 
     }
+
+
 
 }

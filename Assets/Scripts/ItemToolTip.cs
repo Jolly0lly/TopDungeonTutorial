@@ -9,6 +9,7 @@ public class ItemToolTip : MonoBehaviour
     [SerializeField] private Text itemDescriptionText;
     [SerializeField] private Image itemImage;
     [SerializeField] private ItemSpriteResizer itemSpriteResizer;
+    public static ItemToolTip itemToolTipInstance;
 
     private void Start()
     {

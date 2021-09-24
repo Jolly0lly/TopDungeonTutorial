@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 3974409739591331133}
   - component: {fileID: 4681720281529093710}
   - component: {fileID: 8389825298554297669}
+  - component: {fileID: -6341280679409298450}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -200,19 +201,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3695673349730145612}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9003031883112003361}
-        m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: HighlightSlotTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &9003031883112003361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,4 +282,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3977623de33de4f9d832c31b01683e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storage: {fileID: 0}
+--- !u!114 &-6341280679409298450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695673349730145610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e075d5b7a7f1c409054734332aeef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 434143080428695187, guid: f19ec164a58c4974a88e66be86edece3, type: 3}

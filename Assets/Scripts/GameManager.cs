@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     //References 
     public Player player;
 
-    public Armor armor;
+    public Armour armor;
     public Weapon weapon;
 
     public FloatingTextManager floatingTextManager;
