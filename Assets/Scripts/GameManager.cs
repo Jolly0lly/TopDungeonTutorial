@@ -32,10 +32,9 @@ public class GameManager : MonoBehaviour
 
     //References 
     public Player player;
-
     public Armour armor;
     public Weapon weapon;
-
+    public CharacterMenu characterMenu;
     public FloatingTextManager floatingTextManager;
     public RectTransform hpBar;
 

@@ -1,37 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CharacterMenu : MonoBehaviour
 {
     public Text levelText, hitpointText, friesText, expText;
-
-    private int currentArmor = 0;
     public Image currentArmorSprite;
     public Image weaponSprite;
     public GameObject expBar;
+    public UnityEvent onMenuDataChanged = new UnityEvent();
     private Image expBarColor;
     private RectTransform expBarRect;
+    [SerializeField] private Text weaponDamage;
+    [SerializeField] private Text armourDamageReduction;
+
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        onMenuDataChanged.AddListener(UpdateMenu);
+        gameObject.SetActive(true);
     }
 
-
-    public void OnArmorEquip(Item item)
+    private void OnDestroy()
     {
-        currentArmorSprite.sprite = item.Icon;
-        GameManager.instance.player.SwapSprite(item);
+        onMenuDataChanged.RemoveListener(UpdateMenu);
     }
 
-    public void OnWeaponUpgrade()
+    public void OnArmorEquip()
     {
-        if (GameManager.instance.TryUpgradeWeapon())
-        {
-            UpdateMenu();
-        }
+        currentArmorSprite.sprite = GameManager.instance.player.CurrentArmour.Icon;
+        armourDamageReduction.text = "Armour Damage Reduction - " + GameManager.instance.player.armourDamageReduction.ToString();
     }
 
     // Update charater information
@@ -40,7 +41,8 @@ public class CharacterMenu : MonoBehaviour
     {
         //Weapon
 
-        weaponSprite.sprite = GameManager.instance.weaponSprites[0];
+        weaponSprite.sprite = GameManager.instance.weapon.GetComponent<SpriteRenderer>().sprite;
+        weaponDamage.text = "Weapon Damage - " + (GameManager.instance.weapon.WeaponLevel + 1).ToString();
 
         //Meta
         levelText.text = GameManager.instance.GetCurrentLevel().ToString();
@@ -77,7 +79,8 @@ public class CharacterMenu : MonoBehaviour
             expText.text = currentExpIntoLevel.ToString() + "/" + diff.ToString();
         }
 
-
+        //Armour
+        OnArmorEquip();
         
     }
     

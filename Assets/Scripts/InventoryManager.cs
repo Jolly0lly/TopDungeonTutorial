@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
 
         inventoryManagerInstance = this;
 
-        inventorySlots = GetComponentsInChildren<InventorySlot>().ToList();
+        inventorySlots = gameObject.transform.GetChild(0).GetComponentsInChildren<InventorySlot>().ToList();
         storage.onDataChanged.AddListener(LoadStorage);
         LoadStorage();
         gameObject.SetActive(false);

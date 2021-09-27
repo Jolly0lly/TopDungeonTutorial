@@ -8,6 +8,7 @@ public class RemoveItemFromInventory : MonoBehaviour, IPointerEnterHandler, IPoi
     private StorageData storage;
     private InventoryManager invManager;
     private GameObject mouseOver;
+    [SerializeField] private PlayerInventoryManager playerInvManager;
     
 
 
@@ -34,10 +35,21 @@ public class RemoveItemFromInventory : MonoBehaviour, IPointerEnterHandler, IPoi
         {
             if (mouseOver == null)
                 return;
-            Item itemInSlot = mouseOver.GetComponent<InventorySlot>().Item;
-            if(itemInSlot != null)
+            
+            InventorySlot slot;
+            if (!mouseOver.TryGetComponent<InventorySlot>(out slot))
+                return;
+
+            Item itemInSlot = slot.Item;
+            if (itemInSlot != null)
+            {
+                playerInvManager.OnObjectDropped(itemInSlot);
                 storage.RemoveItemFromInventory(itemInSlot);
+                
+            }
         }
     }
-        
 }
+        
+            
+            

@@ -10,17 +10,19 @@ public class ItemSelector : MonoBehaviour, IPointerClickHandler
     private int selectedItemType;
     [SerializeField] private Player player;
     private Item selectedItem;
-    private PlayersInventoryManager playerInvManager;
+    private PlayerInventoryManager playerInvManager;
     private bool weaponEquipped;
     private bool armourEquipped;
 
     private void Awake()
     {
-        playerInvManager = player.GetComponent<PlayersInventoryManager>();
+        playerInvManager = player.GetComponent<PlayerInventoryManager>();
         selectedSlot = gameObject.GetComponent<InventorySlot>();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
         if(selectedSlot.Item != null)
         {
             selectedItem = selectedSlot.Item;
@@ -40,6 +42,7 @@ public class ItemSelector : MonoBehaviour, IPointerClickHandler
                     selectedSlot.HighlightSlotTrigger();
                 }
                 else
+                    
                 {
                     playerInvManager.OnWeaponDeselected();
                     selectedSlot.HighlightSlotTrigger();

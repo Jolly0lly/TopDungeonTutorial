@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : UnmovedMover
 
 {
+    public ArmourItem CurrentArmour => currentArmour;
     private SpriteRenderer spriteRenderer;
     public static Player playerInstance;
     [SerializeField] private RectTransform hpBar;
