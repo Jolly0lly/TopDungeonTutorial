@@ -3569,9 +3569,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1153390818}
   - component: {fileID: 1153390817}
-  - component: {fileID: 1153390816}
   - component: {fileID: 1153390819}
   - component: {fileID: 1153390820}
+  - component: {fileID: 1153390816}
   m_Layer: 6
   m_Name: Boss_0
   m_TagString: Attackable
@@ -3594,11 +3594,13 @@ MonoBehaviour:
   hitpoints: 100
   maxHitpoints: 100
   pushRecoveryDelay: 0.2
+  armourDamageReduction: 0
   ySpeed: 0.1
   xSpeed: 0.2
   xpValue: 50
   triggerLength: 1
   chaseLength: 5
+  animator: {fileID: 0}
 --- !u!212 &1153390817
 SpriteRenderer:
   m_ObjectHideFlags: 0

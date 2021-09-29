@@ -7,8 +7,8 @@ using System.Linq;
 public class InventoryManager : MonoBehaviour
 {
     public StorageData Storage => storage;
-    private List<InventorySlot> inventorySlots = new List<InventorySlot>();
     [SerializeField] private StorageData storage;
+    private List<InventorySlot> inventorySlots = new List<InventorySlot>();
     private static InventoryManager inventoryManagerInstance;
 
     private void Awake()
@@ -39,12 +39,31 @@ public class InventoryManager : MonoBehaviour
         int index = 0;
         foreach (var item in storage.Items)
         {
+            if (index > inventorySlots.Count)
+                return;
             inventorySlots[index].UpdateSlot(item);
             index++;
         }
     }
 
-   
+    public void AddItemToInventory(Item item)
+    {
+        if (storage.Items.Count < inventorySlots.Count)
+            storage.AddItemToInventory(item);
+        else
+            Debug.Log("inventory full");
+    }
+
+    public void RemoveItemFromInventory(Item item)
+    {
+        if (storage.Items.Contains(item))
+            storage.RemoveItemFromInventory(item);
+        else
+            Debug.Log("You're trying to remove an item that doesn't exist in the inventory. This shouldn't even be possible");
+    }
+
+
+
 }
 
 

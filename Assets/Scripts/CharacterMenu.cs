@@ -21,8 +21,8 @@ public class CharacterMenu : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         onMenuDataChanged.AddListener(UpdateMenu);
-        gameObject.SetActive(true);
     }
+        
 
     private void OnDestroy()
     {
@@ -31,8 +31,11 @@ public class CharacterMenu : MonoBehaviour
 
     public void OnArmorEquip()
     {
-        currentArmorSprite.sprite = GameManager.instance.player.CurrentArmour.Icon;
-        armourDamageReduction.text = "Armour Damage Reduction - " + GameManager.instance.player.armourDamageReduction.ToString();
+        if (GameManager.instance.player.CurrentArmour == null)
+            currentArmorSprite.sprite = GameManager.instance.player.DefaultPlayerSprite;
+        else 
+            currentArmorSprite.sprite = GameManager.instance.player.CurrentArmour.Icon;
+        armourDamageReduction.text = "Damage Reduction - " + GameManager.instance.player.armourDamageReduction.ToString();
     }
 
     // Update charater information
@@ -40,9 +43,18 @@ public class CharacterMenu : MonoBehaviour
     public void UpdateMenu()
     {
         //Weapon
+        if (GameManager.instance.weapon.gameObject.activeSelf)
+        {
+            weaponSprite.enabled = true;
+            weaponSprite.sprite = GameManager.instance.weapon.GetComponent<SpriteRenderer>().sprite;
+            weaponDamage.text = "Damage - " + (GameManager.instance.weapon.WeaponLevel + 1).ToString();
+        }
+        else
+        {
+            weaponSprite.enabled = false;
+            weaponDamage.text = "Damage - 0";
+        }
 
-        weaponSprite.sprite = GameManager.instance.weapon.GetComponent<SpriteRenderer>().sprite;
-        weaponDamage.text = "Weapon Damage - " + (GameManager.instance.weapon.WeaponLevel + 1).ToString();
 
         //Meta
         levelText.text = GameManager.instance.GetCurrentLevel().ToString();

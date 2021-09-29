@@ -5,9 +5,12 @@ using UnityEngine;
 public class Player : UnmovedMover
 
 {
+    public Sprite DefaultPlayerSprite => defaultPlayerSprite;
     public ArmourItem CurrentArmour => currentArmour;
     private SpriteRenderer spriteRenderer;
     public static Player playerInstance;
+    public static bool armourEquipped;
+    public static bool weaponEquipped = false;
     [SerializeField] private RectTransform hpBar;
     private ArmourItem currentArmour;
     [SerializeField] private Sprite defaultPlayerSprite;
@@ -90,6 +93,7 @@ public class Player : UnmovedMover
         currentArmour = armourItem;
         SwapSprite(currentArmour);
         armourDamageReduction = currentArmour.DamageReduction;
+        pushRecoveryDelay = currentArmour.ArmourPushRecoveryDelay;
     }
 
     public void UnequipArmour()
@@ -97,6 +101,7 @@ public class Player : UnmovedMover
         currentArmour = null;
         SwapSprite(currentArmour);
         armourDamageReduction = 0;
+        pushRecoveryDelay = 0.2f;
     }
 
 }

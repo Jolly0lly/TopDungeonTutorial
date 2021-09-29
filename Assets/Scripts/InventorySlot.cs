@@ -9,11 +9,18 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private Image image;
     private Item item;
     private Outline invSlotOutline;
+    private ItemSpriteResizer resizer;
     private bool invSlotOutlineEnabled = false;
 
     public void Start()
     {
         invSlotOutline = gameObject.GetComponent<Outline>();
+    }
+
+    private void Awake()
+    {
+        resizer = gameObject.GetComponent<ItemSpriteResizer>();
+        
     }
 
     public void ResetSlot()
@@ -26,9 +33,16 @@ public class InventorySlot : MonoBehaviour
 
     public void UpdateSlot(Item item)
     {
-        image.sprite = item.Icon;
-        this.item = item;
-        SetAlphaBackToFull();
+        if(item != null)
+        {
+            image.sprite = item.Icon;
+            this.item = item;
+            if (resizer == null)
+                Debug.Log(gameObject.name);
+            resizer.ImageResize();
+            SetAlphaBackToFull();
+        }
+        
     }
 
 

@@ -17,3 +17,4 @@ MonoBehaviour:
   description: 
   icon: {fileID: 9048021198963646631, guid: dd551ac5f467129499363731eca79ec2, type: 3}
   damageReduction: 5
+  armourPushRecoveryDelay: 0.1

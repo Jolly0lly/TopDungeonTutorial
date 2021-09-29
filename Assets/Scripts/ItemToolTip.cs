@@ -26,7 +26,6 @@ public class ItemToolTip : MonoBehaviour
 
     public void UpdateToolTip(Item item)
     {
-        Debug.Log(this.name);
         itemNameText.text = item.name;
         itemDescriptionText.text = item.Description;
         itemImage.sprite = item.Icon;

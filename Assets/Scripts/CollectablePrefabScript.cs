@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectablePrefabScript : MonoBehaviour, ICollectableItem
 {
-    private Item item;
+    [SerializeField] private Item item;
     private SpriteRenderer spriteRenderer;
 
     private void UpdateCollectable()

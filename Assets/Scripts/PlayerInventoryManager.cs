@@ -4,16 +4,20 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class PlayerInventoryManager : MonoBehaviour//, IPointerClickHandler
+public class PlayerInventoryManager : MonoBehaviour
 {
-    [SerializeField] private StorageData storage;
-    private InventorySlot selectedSlot;
-    private int selectedItemType;
+    //[SerializeField] private StorageData storage;
+    [SerializeField] private InventoryManager invManager;
     private Player player;
     private Weapon weapon;
     private GameObject weaponObject;
+    private Vector3 droppedObjectPosition;
     [SerializeField] private GameObject collectableItemPrefab;
     [SerializeField] private GameObject collectablesHolder;
+    [SerializeField] private EquippedItemHolder eqArmourHolder;
+    [SerializeField] private EquippedItemHolder eqWeaponHolder;
+    [SerializeField] private float minRadius = 0.08f;
+    [SerializeField] private float maxRadius = 0.2f;
     private void Start()
     {
         player = gameObject.GetComponent<Player>();
@@ -27,19 +31,25 @@ public class PlayerInventoryManager : MonoBehaviour//, IPointerClickHandler
         if (item != null)
         {
             collision.gameObject.SetActive(false);
-            storage.AddItemToInventory(item.GetItem());
+            invManager.AddItemToInventory(item.GetItem());
         }
     }
 
     public void OnArmourSelected(ArmourItem armourItem)
     {
         player.EquipArmour(armourItem);
+        if (eqArmourHolder.item != null)
+            invManager.AddItemToInventory(eqArmourHolder.item);
+        invManager.RemoveItemFromInventory(armourItem);
+        eqArmourHolder.item = armourItem;
+        eqArmourHolder.SetImage();
         GameManager.instance.characterMenu.onMenuDataChanged.Invoke();
     }
 
     public void OnArmourDeselected()
     {
         player.UnequipArmour();
+        invManager.AddItemToInventory(eqArmourHolder.item);
         GameManager.instance.characterMenu.onMenuDataChanged.Invoke();
     }
 
@@ -48,12 +58,18 @@ public class PlayerInventoryManager : MonoBehaviour//, IPointerClickHandler
         weaponObject.SetActive(true);
         player.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponItem.Icon;
         weapon.weaponLevel = weaponItem.WeaponLevel;
+        invManager.RemoveItemFromInventory(weaponItem);
+        if (eqWeaponHolder.item != null)
+            invManager.AddItemToInventory(eqWeaponHolder.item);
+        eqWeaponHolder.item = weaponItem;
+        eqWeaponHolder.SetImage();
         GameManager.instance.characterMenu.onMenuDataChanged.Invoke();
     }
     public void OnWeaponDeselected()
     {
         weaponObject.SetActive(false);
         player.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
+        invManager.AddItemToInventory(eqWeaponHolder.item);
         GameManager.instance.characterMenu.onMenuDataChanged.Invoke();
     }
 
@@ -64,17 +80,21 @@ public class PlayerInventoryManager : MonoBehaviour//, IPointerClickHandler
 
     public void OnObjectDropped(Item item)
     {
-        GameObject newCollectable = Instantiate(collectableItemPrefab, ObjectDropPosition(), Quaternion.identity, collectablesHolder.transform);
+        if (ObjectNotCollidingPosition() == false)
+            return;
+        GameObject newCollectable = Instantiate(collectableItemPrefab, droppedObjectPosition, Quaternion.identity, collectablesHolder.transform);
         newCollectable.GetComponent<CollectablePrefabScript>().SetItem(item);
-        
+        invManager.RemoveItemFromInventory(item);
+
     }
 
 
-    private Vector3 ObjectDropPosition()
+    private Vector3 RandomizedObjectDropPosition(float MinRadius, float MaxRadius)
     {
-        float objectSpawnPositionOffsetX = Random.Range(0.08f, 0.2f) * RandomPositiveOrNegative();
-        float objectSpawnPositionOffsetY = Random.Range(0.08f, 0.2f) * RandomPositiveOrNegative();
-        Vector3 objectSpawnPosition = new Vector3(player.transform.position.x + objectSpawnPositionOffsetX , player.transform.position.y + objectSpawnPositionOffsetY, player.transform.position.z);
+
+        Vector3 randomPositionInRing = Random.insideUnitCircle.normalized * Random.Range(MinRadius, MaxRadius);
+        Vector3 objectSpawnPosition = player.transform.position + randomPositionInRing;
+
         return objectSpawnPosition;
     }
 
@@ -83,10 +103,27 @@ public class PlayerInventoryManager : MonoBehaviour//, IPointerClickHandler
         float random = Random.Range(0, 100);
         if (random < 50)
             return -1;
-        else 
+        else
             return 1;
     }
 
+    private bool ObjectNotCollidingPosition()
+    {
+        droppedObjectPosition = RandomizedObjectDropPosition(minRadius, maxRadius);
+        Collider2D[] hit = new Collider2D[10];
+        hit = Physics2D.OverlapBoxAll(droppedObjectPosition, collectableItemPrefab.GetComponent<BoxCollider2D>().size, 0, LayerMask.GetMask("Actors", "BlockingObjects"));
+        int i = 0;
+        while (hit.Length != 0 && i < 100)
+        {
 
+            droppedObjectPosition = RandomizedObjectDropPosition(minRadius, maxRadius);
+            hit = Physics2D.OverlapBoxAll(droppedObjectPosition, collectableItemPrefab.GetComponent<BoxCollider2D>().size, 0, LayerMask.GetMask("Actors", "BlockingObjects"));
+            i++;
+        }
 
+        if (i >= 100)
+            return false;
+
+        return true;
+    }
 }

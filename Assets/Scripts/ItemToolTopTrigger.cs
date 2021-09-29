@@ -18,15 +18,12 @@ public class ItemToolTopTrigger : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         if (inventorySlot.Item == null)
             return;
-        Debug.Log("Mouse Enter");
         itemToolTip.UpdateToolTip(inventorySlot.Item);
         itemToolTipHolder.SetActive(true);
-        //itemToolTipHolder.transform.position = eventData.position;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Mouse Exit");
         itemToolTipHolder.SetActive(false);
         itemToolTip.ResetToolTip();
     }

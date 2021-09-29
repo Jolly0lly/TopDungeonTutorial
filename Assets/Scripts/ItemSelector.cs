@@ -17,13 +17,14 @@ public class ItemSelector : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         playerInvManager = player.GetComponent<PlayerInventoryManager>();
-        selectedSlot = gameObject.GetComponent<InventorySlot>();
+        // selectedSlot = gameObject.GetComponent<InventorySlot>();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
-        if(selectedSlot.Item != null)
+        selectedSlot = eventData.selectedObject.GetComponent<InventorySlot>();
+        if (selectedSlot.Item != null)
         {
             selectedItem = selectedSlot.Item;
             Debug.Log(selectedItem.Icon.ToString());
@@ -35,35 +36,36 @@ public class ItemSelector : MonoBehaviour, IPointerClickHandler
 
             else if (selectedItemType == 1)
             {
-                weaponEquipped = !weaponEquipped;
-                if (weaponEquipped == true)
-                {
-                    playerInvManager.OnWeaponSelected(selectedItem as WeaponItem);
-                    selectedSlot.HighlightSlotTrigger();
-                }
-                else
-                    
-                {
-                    playerInvManager.OnWeaponDeselected();
-                    selectedSlot.HighlightSlotTrigger();
-                }
-                Debug.Log((selectedItem as WeaponItem).WeaponLevel.ToString());
+
+
+                playerInvManager.OnWeaponSelected(selectedItem as WeaponItem);
+                //selectedSlot.HighlightSlotTrigger();
+
+                //else
+
+                //{
+                //    playerInvManager.OnWeaponDeselected();
+                //    selectedSlot.HighlightSlotTrigger();
+                //}
+
             }
             else if (selectedItemType == 2)
             {
-                armourEquipped = !armourEquipped;
-                if (armourEquipped)
-                {
-                    playerInvManager.OnArmourSelected(selectedItem as ArmourItem);
-                    selectedSlot.HighlightSlotTrigger();
-                }
-                else
-                {
-                    playerInvManager.OnArmourDeselected();
-                    selectedSlot.HighlightSlotTrigger();
-                }
+                playerInvManager.OnArmourSelected(selectedItem as ArmourItem);
+
+                // selectedSlot.HighlightSlotTrigger();
+
+                //else
+                //{
+                //    playerInvManager.OnArmourDeselected();
+
+                //    selectedSlot.HighlightSlotTrigger();
+                //}
             }
         }
-        
+
     }
 }
+
+
+

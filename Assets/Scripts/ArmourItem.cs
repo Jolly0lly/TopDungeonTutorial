@@ -5,6 +5,8 @@ using UnityEngine;
 public class ArmourItem : Item
 {
     public int DamageReduction => damageReduction;
+    public float ArmourPushRecoveryDelay => armourPushRecoveryDelay;
     [SerializeField] private int damageReduction;
+    [SerializeField] private float armourPushRecoveryDelay;
 
 }

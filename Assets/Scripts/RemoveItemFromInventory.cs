@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class RemoveItemFromInventory : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -44,8 +45,6 @@ public class RemoveItemFromInventory : MonoBehaviour, IPointerEnterHandler, IPoi
             if (itemInSlot != null)
             {
                 playerInvManager.OnObjectDropped(itemInSlot);
-                storage.RemoveItemFromInventory(itemInSlot);
-                
             }
         }
     }
